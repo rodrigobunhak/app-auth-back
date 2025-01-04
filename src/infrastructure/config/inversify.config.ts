@@ -15,8 +15,8 @@ import { DatabaseUserRepository } from "../repositories/database-user.repository
 const container = new Container();
 
 // Repositories
-// container.bind<UserRepository>("UserRepository").to(DatabaseUserRepository);
-container.bind<UserRepository>("UserRepository").to(InMemoryUserRepository).inSingletonScope();
+container.bind<UserRepository>("UserRepository").to(DatabaseUserRepository);
+// container.bind<UserRepository>("UserRepository").to(InMemoryUserRepository).inSingletonScope();
 
 // Usecases
 container.bind<SignUpUserUseCase>("SignUpUserUseCase").to(SignUpUserUseCase);

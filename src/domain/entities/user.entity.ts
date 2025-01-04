@@ -6,7 +6,7 @@ import { randomUUID } from 'crypto';
 type UserProps = {
   id: string;
   name: string;
-  email: Email;
+  email: string;
   password: Password;
 }
 
@@ -22,10 +22,10 @@ export class User {
   private _email: Email;
   private _password: Password;
 
-  private constructor(props: UserProps) {
+  constructor(props: UserProps) {
     this._id = props.id;
     this._name = props.name;
-    this._email = props.email;
+    this._email = Email.create(props.email);
     this._password = props.password;
     // TODO: Criar o validade
   };
@@ -34,12 +34,11 @@ export class User {
     if (!props.name) throw new UserNameRequiredError();
     if (!props.email) throw new UserEmailRequiredError();
     if (!props.password) throw new UserPasswordRequiredError();
-    const email = Email.create(props.email);
     const hashedPassword = Password.create(props.password);
     return new User({
       id: randomUUID(),
       name: props.name,
-      email: email,
+      email: props.email,
       password: hashedPassword
     })
   }

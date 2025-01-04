@@ -1,5 +1,5 @@
+import { Password } from '@/domain/entities/password.vo';
 import * as bcrypt from 'bcrypt';
-import { Password } from '../../OLD/user/domain/password.vo';
 
 // Mock bcrypt para testes
 jest.mock('bcrypt', () => ({

@@ -1,4 +1,4 @@
-import { Email } from "../../OLD/user/domain/email.vo";
+import { Email } from "@/domain/entities/email.vo";
 
 describe('Email Value Object Unit Test', () => {
   describe('create', () => {

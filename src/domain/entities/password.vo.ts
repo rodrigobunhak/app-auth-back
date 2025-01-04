@@ -4,7 +4,7 @@ import { PasswordNoLowercaseError, PasswordNoNumberError, PasswordNoSpecialCharE
 export class Password {
   private _value: string;
 
-  private constructor(value: string) {
+  constructor(value: string) {
     this._value = value;
   };
 
