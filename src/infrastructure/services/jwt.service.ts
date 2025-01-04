@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { InvalidTokenError, TokenExpiredError } from '../errors/token.errors';
 
 export const config = {
   jwt: {
@@ -28,7 +29,16 @@ export class JWTService implements TokenService {
   }
 
   verify(token: string): jwt.JwtPayload | string {
-    return jwt.verify(token, this.secret);
+    try {
+      return jwt.verify(token, this.secret);
+    } catch (error) {
+      if (error instanceof jwt.TokenExpiredError) {
+        throw new TokenExpiredError();
+      } else if (error instanceof jwt.JsonWebTokenError) {
+        throw new InvalidTokenError();
+      } else {
+        throw new Error('Error verifying token');
+      }
+    }
   }
-
 }

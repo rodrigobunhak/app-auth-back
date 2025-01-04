@@ -20,7 +20,6 @@ export class ListUsersController {
         res.status(400).json({ message: "Failed to list users" });
       }
     } catch (error) {
-      console.error(error);
       res.status(500).json({ message: "Internal server error" });
     }
   }
