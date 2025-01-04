@@ -1,3 +1,4 @@
+import { UserEmailRequiredError, UserNameRequiredError, UserPasswordRequiredError } from "../errors/user-errors";
 import { Email } from "./email.vo";
 import { Password } from "./password.vo";
 
@@ -29,10 +30,13 @@ export class User {
   };
 
   public static create(props: UserPropsCreate): User {
+    if (!props.name) throw new UserNameRequiredError();
+    if (!props.email) throw new UserEmailRequiredError();
+    if (!props.password) throw new UserPasswordRequiredError();
     const email = Email.create(props.email);
     const hashedPassword = Password.create(props.password);
     return new User({
-      id: '123',
+      id: '123', // TODO: gerar id
       name: props.name,
       email: email,
       password: hashedPassword

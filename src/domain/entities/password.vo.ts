@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import { PasswordNoLowercaseError, PasswordNoNumberError, PasswordNoSpecialCharError, PasswordNoUppercaseError, PasswordTooShortError } from '../errors/password-errors';
 
 export class Password {
   private _value: string;
@@ -9,19 +10,19 @@ export class Password {
 
   private static validate(plainPassword: string): void {
     if (plainPassword.length < 8) {
-      throw new Error('Password must be at least 8 characters long');
+      throw new PasswordTooShortError();
     }
     if (!/\d/.test(plainPassword)) {
-      throw new Error('Password must contain at least one number');
+      throw new PasswordNoNumberError();
     }
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(plainPassword)) {
-      throw new Error('Password must contain at least one special character');
+      throw new PasswordNoSpecialCharError();
     }
     if (!/[A-Z]/.test(plainPassword)) {
-      throw new Error('Password must contain at least one uppercase letter');
+      throw new PasswordNoUppercaseError();
     }
     if (!/[a-z]/.test(plainPassword)) {
-      throw new Error('Password must contain at least one lowercase letter');
+      throw new PasswordNoLowercaseError();
     }
   }
 
