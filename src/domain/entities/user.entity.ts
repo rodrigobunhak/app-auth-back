@@ -1,6 +1,7 @@
 import { UserEmailRequiredError, UserNameRequiredError, UserPasswordRequiredError } from "../errors/user.errors";
 import { Email } from "./email.vo";
 import { Password } from "./password.vo";
+import { randomUUID } from 'crypto';
 
 type UserProps = {
   id: string;
@@ -36,7 +37,7 @@ export class User {
     const email = Email.create(props.email);
     const hashedPassword = Password.create(props.password);
     return new User({
-      id: '123', // TODO: gerar id
+      id: randomUUID(),
       name: props.name,
       email: email,
       password: hashedPassword
