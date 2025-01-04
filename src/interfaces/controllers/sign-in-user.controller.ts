@@ -1,0 +1,26 @@
+import { SignInUserUseCase } from "@/application/usecases/sign-in-user.usecase";
+import { Request, Response } from "express";
+import { inject, injectable } from "inversify";
+
+@injectable()
+export class SignInUserController {
+  constructor(
+    @inject("SignInUserUseCase")
+    private signInUserUseCase: SignInUserUseCase
+  ) {}
+
+  async signIn(req: Request, res: Response): Promise<void> {
+    const { email, password } = req.body;
+    try {
+      const success = await this.signInUserUseCase.execute({ email, password });
+      if (success) {
+        res.status(200).json(success);
+      } else {
+        res.status(400).json({ message: "Failed to sign in user" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  }
+}
