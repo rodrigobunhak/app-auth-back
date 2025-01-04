@@ -1,7 +1,7 @@
 import { SignUpUserUseCase } from "@/application/usecases/sign-up-user.usecase";
-import { DomainPartTooLongError, EmailTooLongError, InvalidEmailFormatError, LocalPartTooLongError } from "@/domain/errors/email-errors";
-import { PasswordNoLowercaseError, PasswordNoNumberError, PasswordNoSpecialCharError, PasswordNoUppercaseError, PasswordTooShortError } from "@/domain/errors/password-errors";
-import { UserEmailRequiredError, UserNameRequiredError, UserPasswordRequiredError } from "@/domain/errors/user-errors";
+import { DomainPartTooLongError, EmailTooLongError, InvalidEmailFormatError, LocalPartTooLongError } from "@/domain/errors/email.errors";
+import { PasswordNoLowercaseError, PasswordNoNumberError, PasswordNoSpecialCharError, PasswordNoUppercaseError, PasswordTooShortError } from "@/domain/errors/password.errors";
+import { UserEmailRequiredError, UserNameRequiredError, UserPasswordRequiredError } from "@/domain/errors/user.errors";
 import { Request, Response } from "express";
 import { inject, injectable } from "inversify";
 

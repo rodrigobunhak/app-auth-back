@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { PasswordNoLowercaseError, PasswordNoNumberError, PasswordNoSpecialCharError, PasswordNoUppercaseError, PasswordTooShortError } from '../errors/password-errors';
+import { PasswordNoLowercaseError, PasswordNoNumberError, PasswordNoSpecialCharError, PasswordNoUppercaseError, PasswordTooShortError } from '../errors/password.errors';
 
 export class Password {
   private _value: string;

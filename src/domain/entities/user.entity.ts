@@ -1,4 +1,4 @@
-import { UserEmailRequiredError, UserNameRequiredError, UserPasswordRequiredError } from "../errors/user-errors";
+import { UserEmailRequiredError, UserNameRequiredError, UserPasswordRequiredError } from "../errors/user.errors";
 import { Email } from "./email.vo";
 import { Password } from "./password.vo";
 

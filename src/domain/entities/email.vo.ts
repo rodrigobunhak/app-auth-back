@@ -1,4 +1,4 @@
-import { DomainPartTooLongError, EmailTooLongError, InvalidEmailFormatError, LocalPartTooLongError } from "../errors/email-errors";
+import { DomainPartTooLongError, EmailTooLongError, InvalidEmailFormatError, LocalPartTooLongError } from "../errors/email.errors";
 
 export class Email {
   private _value: string;

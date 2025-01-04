@@ -1,6 +1,7 @@
 import { UserRepository } from "@/domain/repositories/user.repository";
 import { TokenService } from "@/infrastructure/services/jwt.service";
 import { injectable, inject } from "inversify";
+import { EmailAndPasswordRequiredError, InvalidCredentialsError } from "../errors/user.errors";
 
 interface SignInUserUseCaseInput {
   email: string;
@@ -31,13 +32,16 @@ export class SignInUserUseCase {
   ) {}
 
   async execute(input: SignInUserUseCaseInput): Promise<SignInUserUseCaseOutput> {
+    if (!input.email || !input.password) {
+      throw new EmailAndPasswordRequiredError();
+    }
     const user = await this.userRepository.findByEmail(input.email);
     if (!user) {
-      throw new Error('Invalid credentials');
+      throw new InvalidCredentialsError();
     }
     const isValidPassword = user.password.compare(input.password);
     if (!isValidPassword) {
-      throw new Error('Invalid credentials');
+      throw new InvalidCredentialsError();
     }
     const token = this.tokenService.generate({
       userId: user.id,

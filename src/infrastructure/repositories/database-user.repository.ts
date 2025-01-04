@@ -9,7 +9,7 @@ export class DatabaseUserRepository implements UserRepository {
     throw new Error("Method not implemented.");
   }
   
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<User | null> {
     throw new Error("Method not implemented.");
   }
 
